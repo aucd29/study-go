@@ -1,7 +1,10 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"hw/mydict"
+	"log"
 	"strings"
 )
 
@@ -48,12 +51,25 @@ func NewHello(developer string) *Hello {
 	return &Hello{devel: developer, balance: 0}
 }
 
-func (hello *Hello) ChangeBalance(newBalance int) {
-	hello.balance = newBalance
+func (p *Hello) ChangeBalance(newBalance int) {
+	p.balance = newBalance
 }
 
-func (hello *Hello) GetBalance() int {
-	return hello.balance
+func (p *Hello) GetBalance() int {
+	return p.balance
+}
+
+func (p *Hello) ChangeDeveloper(changeDeveloper string) {
+	p.devel = changeDeveloper
+}
+
+func (p *Hello) Withdraw(amount int) error {
+	if p.balance < amount {
+		return errors.New("Can't withdraw you are poor")
+	}
+
+	p.balance -= amount
+	return nil
 }
 
 func main() {
@@ -86,5 +102,27 @@ func main() {
 	hello := NewHello("bk")
 	hello.ChangeBalance(2000) // SET 2000
 	fmt.Println(hello.GetBalance())
+
+	// WITHDRAW
+	err := hello.Withdraw(100)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(hello.GetBalance())
+
+	err2 := hello.Withdraw(2000)
+	if err2 != nil {
+		log.Fatal(err2)
+	} else {
+		fmt.Println("ok")
+	}
+
+	// DICTIONARY
+	dictionary := mydict.Dictionary{
+		"a": "b",
+		"c": "d",
+	}
+
+	fmt.Println(dictionary)
 
 }
