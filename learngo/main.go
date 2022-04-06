@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"hw/mydict"
+	"hw/myrandstring"
 	"log"
 	"strings"
 )
@@ -110,12 +111,12 @@ func main() {
 	}
 	fmt.Println(hello.GetBalance())
 
-	err2 := hello.Withdraw(2000)
-	if err2 != nil {
-		log.Fatal(err2)
-	} else {
-		fmt.Println("ok")
-	}
+	// err2 := hello.Withdraw(2000)
+	// if err2 != nil {
+	// 	log.Fatal(err2)
+	// } else {
+	// 	fmt.Println("ok")
+	// }
 
 	// DICTIONARY
 	dictionary := mydict.Dictionary{
@@ -124,5 +125,12 @@ func main() {
 	}
 
 	fmt.Println(dictionary)
+
+	myrand := myrandstring.NewRandString()
+	myrand.Init("burke")
+	myrand.Hello()
+	myrand.Hello()
+	myrand.Hello()
+	myrand.Hello()
 
 }
