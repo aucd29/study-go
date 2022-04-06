@@ -124,13 +124,39 @@ func main() {
 		"c": "d",
 	}
 
+	mapValue, err := dictionary.Find("a")
 	fmt.Println(dictionary)
+	if err == nil {
+		fmt.Println(mapValue)
+	}
+	dictionary.Add("burke", "some value")
+
+	mapValue2, err2 := dictionary.Find("burke")
+	fmt.Println(dictionary)
+	if err2 == nil {
+		fmt.Println(mapValue2)
+	}
 
 	myrand := myrandstring.NewRandString()
 	myrand.Init("burke")
 	myrand.Hello()
-	myrand.Hello()
-	myrand.Hello()
-	myrand.Hello()
+
+	urls := []string{
+		"https://wadiz.kr",
+		"https://naver.com",
+	}
+
+	for _, url := range urls {
+		fmt.Println("url : ", url)
+	}
+
+	// INTERFACE TEST
+	var testInterface TestInterface
+
+	testInterface = &TestStruct{"hello interface"}
+	testInterface.TestMethod() // struct 에 해당하는 method 실행
+
+	testInterface = TestFloat(111)
+	testInterface.TestMethod() // float 에 해당하는 method 실행
 
 }

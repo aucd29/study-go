@@ -30,9 +30,11 @@ func (p *RandString) randomString() string {
 	return formats[rand.Intn(len(formats))]
 }
 
-func (p *RandString) Hello() {
+func (p *RandString) Hello() string {
 	message := fmt.Sprintf(p.randomString(), p._name)
 	fmt.Println("==========")
 	fmt.Println(message)
 	fmt.Println("==========")
+
+	return message
 }
